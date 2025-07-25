@@ -7,4 +7,8 @@ export class UsuarioRepository {
         this.usuarios.push(dadosUsuario);
         console.log(this.usuarios);
     }
+
+    async listarUsuarios() {
+        return this.usuarios;
+    }
 }
