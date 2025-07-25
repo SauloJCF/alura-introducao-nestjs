@@ -1,11 +1,12 @@
 import { Injectable } from "@nestjs/common";
+import { CriaUsuarioDTO } from "./dto/CriaUsuario.dto";
 
 @Injectable()
 export class UsuarioRepository {
 
     private usuarios: any[] = [];
 
-    async criar(dadosUsuario) {
+    async criar(dadosUsuario: CriaUsuarioDTO) {
         this.usuarios.push(dadosUsuario);
     }
 
