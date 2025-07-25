@@ -5,12 +5,11 @@ export class UsuarioRepository {
 
     private usuarios: any[] = [];
 
-    async criarUsuario(dadosUsuario) {
+    async criar(dadosUsuario) {
         this.usuarios.push(dadosUsuario);
-        console.log(this.usuarios);
     }
 
-    async listarUsuarios() {
+    async listar() {
         return this.usuarios;
     }
 }

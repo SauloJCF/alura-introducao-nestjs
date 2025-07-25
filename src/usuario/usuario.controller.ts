@@ -6,14 +6,14 @@ export class UsuarioController {
     constructor(private usuarioRepository: UsuarioRepository) { }
 
     @Post()
-    async criarUsuario(@Body() dadosUsuario) {
-        this.usuarioRepository.criarUsuario(dadosUsuario);
+    async criar(@Body() dadosUsuario) {
+        this.usuarioRepository.criar(dadosUsuario);
 
         return { message: 'Usuário Cadastrado Com Sucesso!', dadosUsuario };
     }
 
     @Get()
-    async listarUsuarios() {
-        return this.usuarioRepository.listarUsuarios();
+    async listar() {
+        return this.usuarioRepository.listar();
     }
 }
