@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common";
-import { CriaUsuarioDTO } from "./dto/CriaUsuario.dto";
+import { UsuarioEntity } from "./usuario.entity";
 
 @Injectable()
 export class UsuarioRepository {
 
-    private usuarios: CriaUsuarioDTO[] = [];
+    private usuarios: UsuarioEntity[] = [];
 
-    async criar(dadosUsuario: CriaUsuarioDTO) {
+    async criar(dadosUsuario: UsuarioEntity) {
         this.usuarios.push(dadosUsuario);
     }
 
@@ -15,7 +15,7 @@ export class UsuarioRepository {
     }
 
     async existeComEmail(email: string): Promise<boolean> {
-        const existeUsuario = this.usuarios.some((usuario: CriaUsuarioDTO) => usuario.email === email);
+        const existeUsuario = this.usuarios.some((usuario: UsuarioEntity) => usuario.email === email);
         return existeUsuario;
     }
 }
