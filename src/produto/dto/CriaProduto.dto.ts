@@ -1,4 +1,4 @@
-import { ArrayMinSize, IsArray, IsNotEmpty, IsNumber, IsPositive, IsString, MaxLength, Min, ValidateNested } from "class-validator";
+import { ArrayMinSize, IsArray, IsNotEmpty, IsNumber, IsPositive, IsString, IsUUID, MaxLength, Min, ValidateNested } from "class-validator";
 import { CaracteristicaProdutoDTO } from "./CaracteristicaProduto.dto";
 import { ImagemProdutoDTO } from "./ImagemProduto.dto";
 import { Type } from "class-transformer";
@@ -12,6 +12,9 @@ const MSG_IMAGEM_INVALIDAS = 'A lista de imagens do produto precisa ter pelo men
 const MSG_CATEGORIA_INVALIDAS = 'A categoria do produto não pode ser vazia';
 
 export class CriaProdutoDTO {
+    @IsUUID(undefined, { message: 'ID de usuário inválido' })
+    usuarioId: string;
+    
     @IsString()
     @IsNotEmpty({ message: MSG_NOME_INVALIDO })
     nome: string;
