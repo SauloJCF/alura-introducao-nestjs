@@ -4,7 +4,7 @@ import { CriaUsuarioDTO } from "./dto/CriaUsuario.dto";
 @Injectable()
 export class UsuarioRepository {
 
-    private usuarios: any[] = [];
+    private usuarios: CriaUsuarioDTO[] = [];
 
     async criar(dadosUsuario: CriaUsuarioDTO) {
         this.usuarios.push(dadosUsuario);
@@ -12,5 +12,10 @@ export class UsuarioRepository {
 
     async listar() {
         return this.usuarios;
+    }
+
+    async existeComEmail(email: string): Promise<boolean> {
+        const existeUsuario = this.usuarios.some((usuario: CriaUsuarioDTO) => usuario.email === email);
+        return existeUsuario;
     }
 }
