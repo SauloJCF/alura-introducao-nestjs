@@ -23,7 +23,7 @@ export class UsuarioRepository {
         const usuario = await this.buscarPorId(id);
 
         Object.entries(novosDados).forEach(([chave, valor]) => {
-            if (chave === 'id') {
+            if (!usuario[chave] || chave === 'id') {
                 return;
             }
 
