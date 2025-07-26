@@ -20,19 +20,35 @@ export class UsuarioRepository {
     }
 
     async atualizar(id: string, novosDados: Partial<UsuarioEntity>) {
-        const possivelUsuario = this.usuarios.find(usuario => usuario.id === id);
-
-        if (!possivelUsuario) {
-            throw new Error('Usuário não encontrado!');
-        }
+        const usuario = await this.buscarPorId(id);
 
         Object.entries(novosDados).forEach(([chave, valor]) => {
             if (chave === 'id') {
                 return;
             }
 
-            possivelUsuario[chave] = valor;
+            usuario[chave] = valor;
         });
+
+        return usuario;
+    }
+
+    async deletar(id: string) {
+        const usuario = await this.buscarPorId(id);
+
+        this.usuarios = this.usuarios.filter(
+            usuarioSalvo => usuarioSalvo.id !== id
+        );
+
+        return usuario;
+    }
+
+    private async buscarPorId(id: string) {
+        const possivelUsuario = this.usuarios.find(usuario => usuario.id === id);
+
+        if (!possivelUsuario) {
+            throw new Error('Usuário não encontrado!');
+        }
 
         return possivelUsuario;
     }
